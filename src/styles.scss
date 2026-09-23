@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+ :root { --green: #315942; --ink: #252e27; --muted: #636b62; --line: #dfe2d8; --serif: Georgia, 'Times New Roman', serif; }
+* { box-sizing: border-box; }
+html { background: #f8f9f4; color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+body { margin: 0; }
+a { color: inherit; }
+button, input { font: inherit; }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+::selection { background: #dce7cc; }

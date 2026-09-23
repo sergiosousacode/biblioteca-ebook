@@ -1,0 +1,9 @@
+:host { min-width: 0; }
+.cover { border-radius: 12px; overflow: hidden; background: #eae6de; }
+img { display: block; width: 100%; height: auto; aspect-ratio: 360 / 460; object-fit: cover; transition: transform .25s ease; }
+article:hover img { transform: scale(1.025); }
+.category { font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 750; color: var(--green); margin: 1.15rem 0 .5rem; }
+h3 { font-family: var(--serif); font-size: 1.35rem; line-height: 1.25; margin: 0 0 .4rem; }
+.author { font-size: .85rem; color: var(--muted); margin: 0; }
+.synopsis { font-size: .82rem; line-height: 1.65; color: var(--muted); margin: .65rem 0 0; }
+@media (prefers-reduced-motion: reduce) { img { transition: none; } article:hover img { transform: none; } }

@@ -1,0 +1,4 @@
+div { display: flex; flex-wrap: wrap; gap: .5rem; }
+button { border: 1px solid #d7dbd3; border-radius: 100px; padding: .65rem 1.05rem; font: inherit; font-size: .8rem; background: transparent; color: var(--muted); cursor: pointer; }
+button:hover { border-color: var(--green); color: var(--green); }
+button[aria-pressed='true'] { background: var(--green); color: white; border-color: var(--green); }

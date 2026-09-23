@@ -1,0 +1,6 @@
+<div role="group" aria-label="Filtrar por categoria">
+  <button type="button" [attr.aria-pressed]="selected() === ''" (click)="selectedChange.emit('')">Todas</button>
+  @for (category of categories(); track category.id) {
+    <button type="button" [attr.aria-pressed]="selected() === category.id" (click)="selectedChange.emit(category.id)">{{ category.name }}</button>
+  }
+</div>

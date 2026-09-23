@@ -1,0 +1,2 @@
+<label for="book-search">Encontre sua próxima leitura</label>
+<div class="search"><span aria-hidden="true">⌕</span><input #search id="book-search" type="search" placeholder="Busque por título ou autor" [value]="value()" (input)="valueChange.emit(search.value)"></div>
