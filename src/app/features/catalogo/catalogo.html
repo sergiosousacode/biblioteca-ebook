@@ -1,0 +1,14 @@
+<main id="conteudo" tabindex="-1">
+  <section id="catalogo" class="catalog" aria-labelledby="catalog-title">
+    <div class="catalog-heading"><div><p class="eyebrow">ESCOLHA SUA PRÓXIMA HISTÓRIA</p><h1 id="catalog-title">Nossa biblioteca</h1></div><p>Histórias para todos os seus momentos.</p></div>
+    <div class="tools"><app-search-input [value]="query()" (valueChange)="query.set($event)" /><app-category-filter [categories]="categories" [selected]="category()" (selectedChange)="category.set($event)" /></div>
+    <p class="result-count" role="status" aria-live="polite" aria-atomic="true">{{ books().length }} {{ books().length === 1 ? 'livro encontrado' : 'livros encontrados' }}</p>
+    <div class="book-grid">
+      @for (book of books(); track book.id) { <app-book-card [book]="book" [categoryName]="categoryName(book.categoryId)" /> }
+    </div>
+    @if (books().length === 0) {
+      <div class="empty"><h3>Nenhum livro encontrado</h3><p>Tente outro título, autor ou categoria.</p><button type="button" (click)="clearFilters()">Limpar pesquisa e filtros</button></div>
+    }
+    <p class="sample-note">Uma primeira seleção para imaginar novas leituras. Livros e autores deste catálogo são fictícios.</p>
+  </section>
+</main>
