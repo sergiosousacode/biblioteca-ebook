@@ -103,15 +103,52 @@ A revisão geral de acessibilidade (incluindo teclado e foco) permanece prevista
 
 # Fase 4 — Detalhes do livro
 
-- [ ] Criar rota /livro/:id.
-- [ ] Exibir capa.
-- [ ] Exibir título.
-- [ ] Exibir autor.
-- [ ] Exibir categoria.
-- [ ] Exibir sinopse.
-- [ ] Criar botão "Ler".
-- [ ] Criar botão "Baixar PDF".
-- [ ] Tratar livro inexistente.
+- [x] Criar rota /livro/:id.
+- [x] Exibir capa.
+- [x] Exibir título.
+- [x] Exibir autor.
+- [x] Exibir categoria.
+- [x] Exibir sinopse.
+- [x] Criar botão "Ler".
+- [x] Criar botão "Baixar PDF".
+- [x] Tratar livro inexistente.
+
+Implementação e revisão por item (24/09/2026):
+
+Fase 4 concluída e aprovada pelo usuário. Os itens de implementação foram validados pelos testes abaixo; o usuário confirmou a responsividade e a ausência de erros no DevTools.
+
+| Item | Implementação e evidência |
+| --- | --- |
+| Rota `/livro/:id` | Componente standalone em `src/app/features/livro/`, carregado por `loadComponent` em `app.routes.ts`. `app.routes.server.ts` usa os IDs do `BookService` para pré-renderizar os seis livros, com fallback de renderização no servidor para outros IDs. Testes cobrem acesso direto e navegação pelos títulos dos cards do catálogo e dos destaques. |
+| Capa | `livro.html` usa `coverUrl` do `Book`, com dimensões e texto alternativo. Teste verifica caminho e descrição. |
+| Título | Exibido no `h1` a partir de `Book.title`; testes verificam acesso direto e atualização ao trocar o ID na mesma instância da página. |
+| Autor | Exibido a partir de `Book.author`; testado para livros diferentes. |
+| Categoria | Nome obtido das categorias do `BookService` por `categoryId`; testes verificam atualização entre Poesia e Literatura. |
+| Sinopse | Exibida a partir de `Book.synopsis`, sob seção identificada; conteúdo verificado por teste. |
+| Botão "Ler" | Criado desabilitado, com explicação de indisponibilidade associada por `aria-describedby`, conforme plano aprovado. Teste verifica rótulo, estado e explicação. A ação de leitura será implementada na Fase 5. |
+| Botão "Baixar PDF" | Criado desabilitado e associado à mesma explicação, conforme plano aprovado. Teste verifica rótulo e estado. O download será implementado na Fase 5. |
+| Livro inexistente | `BookService.getBookById` retorna `undefined` para ID desconhecido; página mostra "Livro não encontrado", sem dados ou ações do livro anterior, e oferece retorno ao catálogo. Testes cobrem acesso direto, mudança de ID válido para inválido e recuperação para ID válido. |
+
+Reaproveitamento e escopo:
+
+- Mantidos o modelo `Book`, os mocks e o `BookService`; acrescentada apenas a consulta por ID ao serviço.
+- Cards existentes receberam link no título, usado pela Home e pelo catálogo. Header e footer compartilhados continuam atendendo à nova página.
+- Ano de publicação também exibido a partir do campo existente.
+- Nenhum leitor, arquivo PDF, download ou funcionalidade das fases posteriores foi implementado. Os dois botões estão concluídos como interface desabilitada, não como operações funcionais de leitura/download.
+
+Validação automatizada:
+
+- `./scripts/validate.sh`: aprovado.
+- `npm run build`: sem erros, com oito rotas pré-renderizadas (`/`, `/catalogo` e os seis livros).
+- `npm test -- --watch=false`: 16 testes aprovados em 6 arquivos.
+- `git diff --check`: aprovado.
+
+Validação manual e aprovação do usuário:
+
+- Responsividade aprovada e ausência de erros no DevTools confirmada pelo usuário.
+- Encerramento da Fase 4 autorizado pelo usuário.
+- Acesso direto e IDs inexistentes têm cobertura automatizada conforme registrado acima. Não foi registrada confirmação manual específica de recarga desses endereços ou de teclado/foco; a revisão geral de acessibilidade permanece na Fase 6.
+- Leitura e download permanecem reservados à Fase 5; os botões continuam desabilitados conforme o escopo aprovado.
 
 ---
 

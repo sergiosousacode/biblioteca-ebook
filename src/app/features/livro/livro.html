@@ -1,0 +1,28 @@
+<main id="conteudo" tabindex="-1">
+  <a class="back-link" routerLink="/catalogo">← Voltar ao catálogo</a>
+  @if (book(); as selectedBook) {
+  <article class="book-details" aria-labelledby="book-title">
+    <img class="cover" [src]="selectedBook.coverUrl" [alt]="'Capa de ' + selectedBook.title" width="360" height="460">
+    <div class="book-copy">
+      <p class="category">{{ categoryName() }}</p>
+      <h1 id="book-title">{{ selectedBook.title }}</h1>
+      <p class="author">{{ selectedBook.author }}</p>
+      <p class="year">Ano de publicação: {{ selectedBook.publicationYear }}</p>
+      <section aria-labelledby="synopsis-title">
+        <h2 id="synopsis-title">Sinopse</h2>
+        <p class="synopsis">{{ selectedBook.synopsis }}</p>
+      </section>
+      <div class="actions">
+        <button type="button" disabled aria-describedby="pdf-availability">Ler</button>
+        <button class="secondary" type="button" disabled aria-describedby="pdf-availability">Baixar PDF</button>
+      </div>
+      <p id="pdf-availability" class="availability">Leitura e download ainda não estão disponíveis.</p>
+    </div>
+  </article>
+  } @else {
+  <section class="not-found" aria-labelledby="not-found-title">
+    <h1 id="not-found-title">Livro não encontrado</h1>
+    <p>Não encontramos este livro. Explore o catálogo para escolher outra leitura.</p>
+  </section>
+  }
+</main>

@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Catalogo } from './catalogo';
 
 describe('Catalogo', () => {
   it('filters the rendered catalog and restores it through the empty-state action', async () => {
-    await TestBed.configureTestingModule({ imports: [Catalogo] }).compileComponents();
+    await TestBed.configureTestingModule({ imports: [Catalogo], providers: [provideRouter([])] }).compileComponents();
     const fixture = TestBed.createComponent(Catalogo);
     await fixture.whenStable();
     const element = fixture.nativeElement as HTMLElement;

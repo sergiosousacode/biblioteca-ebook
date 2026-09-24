@@ -8,6 +8,10 @@ export class BookService {
   readonly categories = CATEGORIES;
   readonly featuredBooks: readonly Book[] = BOOKS.slice(0, 3);
 
+  getBookById(id: string): Book | undefined {
+    return this.books.find(book => book.id === id);
+  }
+
   filterBooks(query: string, categoryId: string): readonly Book[] {
     const term = this.normalize(query);
     return this.books.filter(book =>
