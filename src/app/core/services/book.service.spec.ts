@@ -3,6 +3,12 @@ import { BookService } from './book.service';
 describe('BookService', () => {
   const service = new BookService();
 
+  it('finds a book by exact ID and returns undefined for an unknown ID', () => {
+    expect(service.getBookById('casa-das-mares')?.title).toBe('A casa das marés');
+    expect(service.getBookById('inexistente')).toBeUndefined();
+    expect(service.getBookById('')).toBeUndefined();
+  });
+
   it('returns the whole catalog without filters', () => {
     expect(service.filterBooks('', '')).toHaveLength(6);
   });

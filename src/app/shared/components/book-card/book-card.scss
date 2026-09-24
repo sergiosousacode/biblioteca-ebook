@@ -7,3 +7,6 @@ h3 { font-family: var(--serif); font-size: 1.35rem; line-height: 1.25; margin: 0
 .author { font-size: .85rem; color: var(--muted); margin: 0; }
 .synopsis { font-size: .82rem; line-height: 1.65; color: var(--muted); margin: .65rem 0 0; }
 @media (prefers-reduced-motion: reduce) { img { transition: none; } article:hover img { transform: none; } }
+
+h3 a { text-decoration: none; }
+h3 a:hover, h3 a:focus-visible { text-decoration: underline; text-underline-offset: .15em; }

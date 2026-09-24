@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Book } from '../../../core/models/book';
 import { BookCard } from './book-card';
 
@@ -10,7 +11,7 @@ const book: Book = {
 
 describe('BookCard', () => {
   it('renders the supplied book and updates when reused for another book', async () => {
-    await TestBed.configureTestingModule({ imports: [BookCard] }).compileComponents();
+    await TestBed.configureTestingModule({ imports: [BookCard], providers: [provideRouter([])] }).compileComponents();
     const fixture = TestBed.createComponent(BookCard);
     fixture.componentRef.setInput('book', book);
     fixture.componentRef.setInput('categoryName', 'Poesia');
@@ -24,14 +25,16 @@ describe('BookCard', () => {
     expect(element.querySelector('.category')?.textContent).toBe('Poesia');
     expect(cover.getAttribute('src')).toBe(book.coverUrl);
     expect(cover.alt).toBe('Capa de ' + book.title);
+    expect(element.querySelector('h3 a')?.getAttribute('href')).toBe('/livro/livro-teste');
     expect(cover.getAttribute('loading')).toBe('lazy');
 
-    fixture.componentRef.setInput('book', { ...book, title: 'Outra história', coverUrl: '/images/covers/mares.svg' });
+    fixture.componentRef.setInput('book', { ...book, id: 'outro-livro', title: 'Outra história', coverUrl: '/images/covers/mares.svg' });
     fixture.componentRef.setInput('categoryName', 'Literatura');
     await fixture.whenStable();
     expect(element.querySelector('h3')?.textContent).toBe('Outra história');
     expect(element.querySelector('.category')?.textContent).toBe('Literatura');
     expect(cover.alt).toBe('Capa de Outra história');
+    expect(element.querySelector('h3 a')?.getAttribute('href')).toBe('/livro/outro-livro');
     expect(cover.getAttribute('src')).toBe('/images/covers/mares.svg');
   });
 });

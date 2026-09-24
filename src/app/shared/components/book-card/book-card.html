@@ -1,7 +1,7 @@
 <article>
   <div class="cover"><img [src]="book().coverUrl" [alt]="'Capa de ' + book().title" width="360" height="460" loading="lazy"></div>
   <p class="category">{{ categoryName() }}</p>
-  <h3>{{ book().title }}</h3>
+  <h3><a [routerLink]="['/livro', book().id]">{{ book().title }}</a></h3>
   <p class="author">{{ book().author }}</p>
   <p class="synopsis">{{ book().synopsis }}</p>
 </article>

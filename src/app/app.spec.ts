@@ -41,6 +41,34 @@ describe('App', () => {
     expect(router.url).toBe('/catalogo');
   });
 
+  it('opens details from catalog and featured cards and returns to the catalog', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    await router.navigateByUrl('/catalogo');
+    await fixture.whenStable();
+    const element = fixture.nativeElement as HTMLElement;
+    element.querySelector<HTMLAnchorElement>('app-book-card h3 a')!.click();
+    await fixture.whenStable();
+    expect(router.url).toBe('/livro/versos-do-amanhecer');
+    expect(element.querySelector('h1')?.textContent).toBe('Versos do amanhecer');
+    expect(element.querySelectorAll('footer')).toHaveLength(1);
+    element.querySelector<HTMLAnchorElement>('.back-link')!.click();
+    await fixture.whenStable();
+    expect(router.url).toBe('/catalogo');
+
+    await router.navigateByUrl('/');
+    await fixture.whenStable();
+    element.querySelector<HTMLAnchorElement>('#destaques app-book-card h3 a')!.click();
+    await fixture.whenStable();
+    expect(router.url).toBe('/livro/versos-do-amanhecer');
+
+    await router.navigateByUrl('/livro/inexistente');
+    await fixture.whenStable();
+    element.querySelector<HTMLAnchorElement>('.back-link')!.click();
+    await fixture.whenStable();
+    expect(router.url).toBe('/catalogo');
+  });
+
   it('loads the home page at the root route', async () => {
     const harness = await RouterTestingHarness.create('/');
     expect(harness.routeNativeElement?.querySelector('h1')?.textContent).toContain('novos horizontes.');
