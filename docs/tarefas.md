@@ -51,49 +51,53 @@ Estado da implementação (24/09/2026):
 
 # Fase 3 — Catálogo
 
-- [ ] Criar página de catálogo.
-- [ ] Criar modelo Ebook.
+- [x] Criar página de catálogo.
+- [x] Criar modelo Ebook.
 - [x] Criar EbookService.
 - [x] Criar dados simulados.
 - [x] Exibir livros em grid.
 - [x] Implementar pesquisa.
 - [x] Implementar filtro por categoria.
 - [x] Implementar estado sem resultados.
-- [ ] Testar responsividade.
+- [x] Testar responsividade.
 
-Revisão do código atual (24/09/2026):
+Estado após correção das pendências de implementação (24/09/2026):
 
-A fase permanece incompleta. Os itens marcados abaixo foram verificados na implementação existente na Home; isso não comprova a existência da página `/catalogo`. A revisão alterou somente este documento, sem implementar correções.
+Fase 3 concluída. As pendências de implementação foram corrigidas, a validação automatizada passou e a validação manual foi concluída e aprovada pelo usuário.
 
 | Tarefa | Evidência e resultado |
 | --- | --- |
-| Página de catálogo | Pendente: `src/app/app.routes.ts` declara apenas `/`; não existe `src/app/features/catalogo/`. `home.html` contém uma seção `#catalogo`, e os links do hero e de `shared/components/header/header.html` apontam para essa âncora. É necessário criar a página standalone em `/catalogo` com lazy loading, reaproveitar a seção e validar a navegação e o acesso direto. |
-| Modelo Ebook | Parcial: `src/app/core/models/book.ts` contém `Book`, com título, autor, sinopse, categoria por ID, capa e `pdfUrl`, mas falta ano de publicação exigido pela seção 5 da arquitetura. Completar o modelo, os dados de `core/data/books.mock.ts` e a fixture de `shared/components/book-card/book-card.spec.ts`. O nome `Book` por si só não é uma falha funcional. |
-| EbookService | Implementado como `BookService`, em `core/services/book.service.ts`: centraliza livros/categorias e filtragem, é injetado pela Home e tem cinco testes aprovados. Não é necessário duplicá-lo apenas para mudar o nome. |
-| Dados simulados | Implementados em `core/data/books.mock.ts`: seis livros fictícios e três categorias, consumidos via serviço. As seis capas referenciadas existem em `public/images/covers/`, em SVG pequenos (875–1492 bytes); WebP é preferência, não exigência exclusiva. Ano de publicação e PDFs têm as limitações registradas nesta revisão. |
-| Grid | Implementado em `features/home/home.html` e `home.scss` com `BookCard` reutilizável. Testes confirmam seis cards e apresentação de título, autor, categoria, sinopse e capa, com texto alternativo e lazy loading. O CSS define três, duas ou uma coluna conforme a largura; a aparência depende de navegador. |
-| Pesquisa | Implementada em `shared/components/search-input/`, `home.ts` e `BookService`: busca por título/autor, ignorando acentos, caixa e espaços externos. Testes de serviço e integração aprovados. |
-| Filtro por categoria | Implementado em `shared/components/category-filter/`, `home.ts` e `BookService`, com opção Todas e combinação com pesquisa. Testes verificam resultados e estado `aria-pressed`. |
-| Estado sem resultados | Implementado em `home.html` e `home.ts`: mensagem, contador acessível e ação para limpar pesquisa/filtros. O teste de integração confirma o estado vazio e a recuperação dos seis livros. |
-| Responsividade | Existem media queries em `home.scss` e componentes compartilhados. Não foi executada validação visual nesta revisão. A aprovação manual anterior é histórica: o código atual não contém a rota e o ano de publicação da versão anteriormente relatada, portanto não é possível associar aquela aprovação à conclusão desta fase no estado atual. |
+| Página de catálogo | Implementada em `src/app/features/catalogo/` como componente standalone, carregado por `loadComponent` na rota `/catalogo` em `app.routes.ts`. A seção e os testes de interação foram transferidos da Home. Links do hero e do header usam Angular Router; testes validam acesso direto, título da página e navegação Home → Catálogo → Home. |
+| Modelo Ebook | O modelo existente `Book`, em `core/models/book.ts`, foi completado com `readonly publicationYear: number`, correspondente ao ano de publicação exigido pela arquitetura. Os seis mocks e a fixture de `book-card.spec.ts` foram atualizados e compilam com tipagem estrita. O nome `Book` foi mantido. |
+| EbookService | Reaproveitado `BookService`, em `core/services/book.service.ts`, sem renomeação ou duplicação. Centraliza os dados e a filtragem e é injetado pela Home e pelo catálogo. Seus cinco testes continuam aprovados. |
+| Dados simulados | Seis livros fictícios e três categorias em `core/data/books.mock.ts`, agora com anos de publicação. Capas locais mantidas. A disponibilização de PDFs permanece reservada às fases posteriores. |
+| Grid | Transferido para `features/catalogo/catalogo.html` e `catalogo.scss`, reutilizando `BookCard`. Mantidos título, autor, categoria, sinopse, capa com texto alternativo e lazy loading, e estilos para três, duas ou uma coluna. Testes validam os seis cards; o layout foi aprovado pelo usuário no navegador. |
+| Pesquisa | Reutiliza `SearchInput` e `BookService`: busca por título/autor ignorando acentos, caixa e espaços externos. Testes do serviço e de integração no catálogo aprovados. |
+| Filtro por categoria | Reutiliza `CategoryFilter` e o serviço, com opção Todas e combinação com pesquisa. Teste de integração valida resultados e `aria-pressed` na nova página. |
+| Estado sem resultados | Transferido para o catálogo com mensagem, contador acessível e limpeza de pesquisa/filtros. Teste confirma estado vazio e recuperação dos seis livros. |
+| Responsividade | Validação manual concluída pelo usuário em desktop, tablet e mobile: layout responsivo, sem rolagem horizontal indevida. |
 
-Validação automatizada desta revisão:
+O footer existente foi extraído para `shared/components/footer/` e renderizado uma única vez por `App`, para atender às duas páginas sem duplicar seu template. A Home mantém hero e destaques.
+
+Validação automatizada após as correções:
 
 - `./scripts/validate.sh`: aprovado.
-- `npm run build`: sem erros; uma rota pré-renderizada (`/`).
-- `npm test -- --watch=false`: 10 testes aprovados em 4 arquivos.
-- TypeScript strict e templates estritos habilitados; nenhum uso de `any` encontrado em `src/app`.
-- Os testes atuais não cobrem `/catalogo`, pois essa rota não está implementada. Build e testes aprovados não eliminam as pendências acima.
+- `npm run build`: sem erros; duas rotas pré-renderizadas (`/` e `/catalogo`), com bundles lazy das páginas.
+- `npm test -- --watch=false`: 11 testes aprovados em 5 arquivos.
+- Testes de navegação cobrem links do hero/header, retorno à Home, título do catálogo, footer compartilhado e alvos de acesso ao conteúdo.
+- `git diff --check`: aprovado.
 
-Limitação em relação aos requisitos gerais:
+Limitação reservada às fases posteriores:
 
-- Todos os `pdfUrl` em `src/app/core/data/books.mock.ts` são `null`, e não há PDFs em `public/`. Portanto, o requisito de disponibilizar arquivo PDF por livro ainda não está atendido. Será necessário fornecer os arquivos e URLs válidas para leitura/download nas fases correspondentes; nenhum PDF ou funcionalidade de leitura foi adicionado nesta revisão.
+- `pdfUrl` continua `null` nos mocks. Leitor, arquivos PDF e funcionalidades de leitura/download não fazem parte destas correções.
 
-Verificações dependentes de navegador:
+Validação manual concluída pelo usuário:
 
-- Na versão atual: conferir o grid e os controles em desktop, tablet e smartphone, ausência de rolagem horizontal, legibilidade, carregamento das capas e interação com pesquisa/filtros/estado vazio.
-- Conferir navegação por teclado, foco e console/Network após recarregar e interagir com a aplicação.
-- Após implementar a página: repetir as verificações em `/catalogo`, incluindo acesso direto, recarga e navegação Home → Catálogo → Home. Não considerar essa rota validada enquanto não existir.
+- Responsividade aprovada em desktop, tablet e mobile, sem rolagem horizontal indevida.
+- Pesquisa, filtros e navegação funcionaram corretamente.
+- Acesso direto e recarga em `/catalogo` aprovados, sem erros relacionados à aplicação no console.
+
+A revisão geral de acessibilidade (incluindo teclado e foco) permanece prevista na Fase 6; não foi declarada concluída por este registro.
 
 ---
 

@@ -5,7 +5,7 @@ import { BookCard } from './book-card';
 const book: Book = {
   id: 'livro-teste', title: 'Uma nova história', author: 'Autora fictícia',
   categoryId: 'poesia', coverUrl: '/images/covers/amanhecer.svg',
-  synopsis: 'Versos para descobrir.', pdfUrl: null,
+  synopsis: 'Versos para descobrir.', publicationYear: 2024, pdfUrl: null,
 };
 
 describe('BookCard', () => {

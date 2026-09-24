@@ -1,0 +1,6 @@
+:host { display: block; }
+footer { max-width: 1136px; margin: auto; border-top: 1px solid var(--line); padding: 1.5rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: .75rem; color: var(--muted); }
+.footer-brand { font-size: 1.2rem; font-weight: 750; color: var(--ink); letter-spacing: -.06em; }
+footer a { text-decoration: none; }
+@media (max-width: 1200px) { footer { margin: 0 2rem; } }
+@media (max-width: 640px) { footer { margin: 0 1.25rem; flex-wrap: wrap; } }

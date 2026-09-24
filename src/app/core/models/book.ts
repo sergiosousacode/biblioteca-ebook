@@ -5,5 +5,6 @@ export interface Book {
   readonly categoryId: string;
   readonly coverUrl: string;
   readonly synopsis: string;
+  readonly publicationYear: number;
   readonly pdfUrl: string | null;
 }
