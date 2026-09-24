@@ -13,6 +13,7 @@ import { CategoryFilter } from '../../shared/components/category-filter/category
 })
 export class Home {
   private readonly bookService = inject(BookService);
+  protected readonly featuredBooks = this.bookService.featuredBooks;
   protected readonly categories = this.bookService.categories;
   protected readonly query = signal('');
   protected readonly category = signal('');

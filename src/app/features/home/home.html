@@ -13,6 +13,17 @@
       <span class="art-star">✳</span><span class="art-caption">Um mundo inteiro em cada livro.</span>
     </div>
   </section>
+  <section id="destaques" class="featured" aria-labelledby="featured-title">
+    <div class="catalog-heading">
+      <div><p class="eyebrow">PARA COMEÇAR A DESCOBERTA</p><h2 id="featured-title">Livros em destaque</h2></div>
+      <p>Três histórias para abrir novos horizontes.</p>
+    </div>
+    <div class="book-grid">
+      @for (book of featuredBooks; track book.id) {
+        <app-book-card [book]="book" [categoryName]="categoryName(book.categoryId)" />
+      }
+    </div>
+  </section>
   <section id="catalogo" class="catalog" aria-labelledby="catalog-title">
     <div class="catalog-heading"><div><p class="eyebrow">ESCOLHA SUA PRÓXIMA HISTÓRIA</p><h2 id="catalog-title">Nossa biblioteca</h2></div><p>Histórias para todos os seus momentos.</p></div>
     <div class="tools"><app-search-input [value]="query()" (valueChange)="query.set($event)" /><app-category-filter [categories]="categories" [selected]="category()" (selectedChange)="category.set($event)" /></div>

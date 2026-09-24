@@ -1,4 +1,4 @@
-header { max-width: 1200px; margin: auto; padding: 1.6rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+header { max-width: 1200px; margin: auto; padding: 1.6rem 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
 .brand { font-size: 1.65rem; font-weight: 750; letter-spacing: -.07em; text-decoration: none; display: flex; align-items: center; }
 .brand-icon { background: var(--green); color: white; border-radius: 9px; padding: .2rem .5rem; margin-right: .6rem; font-size: 1.3rem; }
 .brand-dot { color: var(--green); }
