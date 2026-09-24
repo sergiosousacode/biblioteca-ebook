@@ -6,6 +6,7 @@ import { Book } from '../models/book';
 export class BookService {
   readonly books = BOOKS;
   readonly categories = CATEGORIES;
+  readonly featuredBooks: readonly Book[] = BOOKS.slice(0, 3);
 
   filterBooks(query: string, categoryId: string): readonly Book[] {
     const term = this.normalize(query);

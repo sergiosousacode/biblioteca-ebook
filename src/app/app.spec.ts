@@ -20,6 +20,6 @@ describe('App', () => {
   it('loads the home page at the root route', async () => {
     const harness = await RouterTestingHarness.create('/');
     expect(harness.routeNativeElement?.querySelector('h1')?.textContent).toContain('novos horizontes.');
-    expect(harness.routeNativeElement?.querySelectorAll('app-book-card')).toHaveLength(6);
+    expect(harness.routeNativeElement?.querySelectorAll('#catalogo app-book-card')).toHaveLength(6);
   });
 });

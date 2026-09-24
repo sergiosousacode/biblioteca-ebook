@@ -1,6 +1,6 @@
 # AGENTS.md
 
-## Objetivo
+## 1.Objetivo
 
 Desenvolver uma biblioteca digital de e-books utilizando Angular.
 
@@ -8,7 +8,27 @@ A aplicação deve permitir a leitura e o download de livros
 em PDF, oferecendo uma interface moderna, minimalista
 e responsiva.
 
-## Tecnologias
+## 2. Documentação do projeto
+
+Antes de iniciar qualquer tarefa:
+
+1. Ler `docs/requisitos.md`.
+2. Ler `docs/arquitetura.md`.
+3. Consultar `docs/tarefas.md`.
+4. Identificar a próxima tarefa pertinente.
+5. Respeitar as decisões arquiteturais existentes.
+
+Após concluir uma tarefa:
+
+1. Executar `./scripts/validate.sh`.
+2. Atualizar `docs/tarefas.md`.
+3. Marcar como concluídas somente tarefas realmente implementadas.
+4. Informar os arquivos modificados.
+5. Informar o resultado da validação.
+
+Não alterar requisitos ou decisões arquiteturais sem autorização.
+
+## 3. Tecnologias
 
 - Angular
 - TypeScript com strict habilitado
@@ -16,7 +36,7 @@ e responsiva.
 - Angular Router
 - Componentes standalone
 
-## Arquitetura
+## 4. Arquitetura
 
 Organizar a aplicação em:
 
@@ -24,7 +44,7 @@ Organizar a aplicação em:
 - shared: componentes reutilizáveis.
 - features: funcionalidades da aplicação.
 
-## Funcionalidades
+## 5. Funcionalidades
 
 1. Página inicial da biblioteca.
 2. Catálogo de e-books.
@@ -40,7 +60,7 @@ Funcionalidades futuras:
 - Upload de e-books pelo administrador.
 - Comentários e avaliações dos leitores.
 
-## Regras de desenvolvimento
+## 6. Regras de desenvolvimento
 
 - Utilizar componentes standalone.
 - Manter a tipagem estrita.
@@ -50,7 +70,7 @@ Funcionalidades futuras:
 - Criar componentes reutilizáveis.
 - Não instalar dependências sem autorização.
 
-## Fluxo de trabalho
+## 7. Fluxo de trabalho
 
 Antes de implementar uma funcionalidade:
 
@@ -62,14 +82,14 @@ Antes de implementar uma funcionalidade:
 6. Executar os testes.
 7. Apresentar os resultados.
 
-## Restrições
+## 8. Restrições
 
 - Não executar commits automaticamente.
 - Não modificar configurações de produção.
 - Não remover arquivos sem autorização.
 - Não utilizar dados reais de usuários.
 
-## Validação
+## 9. Validação
 
 Após implementar uma funcionalidade, executar:
 

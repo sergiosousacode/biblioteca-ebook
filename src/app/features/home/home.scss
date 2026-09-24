@@ -15,7 +15,8 @@ h1 em { color: var(--green); font-weight: 400; }
 .front-book { left: 13%; top: 62px; transform: rotate(-12deg); }
 .art-star { position: absolute; right: 5%; bottom: 65px; color: var(--green); font-size: 3rem; }
 .art-caption { position: absolute; bottom: 0; width: 100%; text-align: center; font-family: var(--serif); font-style: italic; color: var(--muted); }
-.catalog { border-top: 1px solid var(--line); padding: 2.7rem 0 3rem; scroll-margin-top: 1rem; }
+.featured .book-grid { margin-top: 2rem; }
+.featured, .catalog { border-top: 1px solid var(--line); padding: 2.7rem 0 3rem; scroll-margin-top: 1rem; }
 .catalog-heading { display: flex; justify-content: space-between; gap: 1rem; align-items: end; }
 h2 { font-size: 2.5rem; margin: 0; }
 .catalog-heading > p { color: var(--muted); font-size: .85rem; }
